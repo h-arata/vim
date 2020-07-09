@@ -1,10 +1,6 @@
 " =================================================
 " file  : _vimrc or init.vim
-" author：Arata Hasegawa
-"
-" history:
-" 2005/12/07 vimrcファイル整理
-"
+" author：h-arata
 " =================================================
 
 " vimをvi互換にしない
@@ -162,6 +158,10 @@ set fileformats=dos,unix      " 改行コードの自動認識
 if exists('&ambiwidth')
   set ambiwidth=double
 endif
+
+" パスコピー
+command! CopyPath :let @*=expand("%:p")
+command! CopyDir :let @*=expand("%:h")
 
 " -------------------------------------------------
 " 個別設定
@@ -390,14 +390,8 @@ if dein#tap('vim-expand-region')
   vmap <C-v> <Plug>(expand_region_shrink)
 endif
 
-" comfortable-motion
-" if dein#tap('comfortable-motion.vim')
-"   let g:comfortable_motion_interval = 2400 / 60
-"   let g:comfortable_motion_friction = 0.0
-"   let g:comfortable_motion_air_drag = 10.0
-" endif
-
 if dein#tap('vim-easymotion')
+	let g:EasyMotion_use_migemo = 1
   map  <Leader>j <Plug>(easymotion-bd-w)
   nmap <Leader>j <Plug>(easymotion-overwin-w)
   map  <Leader>l <Plug>(easymotion-bd-jk)
@@ -405,7 +399,6 @@ if dein#tap('vim-easymotion')
   map  <Leader>k <Plug>(easymotion-bd-f)
   nmap <Leader>k <Plug>(easymotion-overwin-f)
 endif
-
 
 " dein 設定
 if dein#tap('denite.nvim')
@@ -717,3 +710,6 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" vim polyglot で csvを無効化する
+let g:polyglot_disabled = ['csv']

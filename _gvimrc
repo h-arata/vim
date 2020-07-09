@@ -1,0 +1,56 @@
+" =================================================
+" file   : _gvimrc
+" author : Arata Hasegawa
+" =================================================
+
+nmap <m-space> :simalt ~\ <CR>
+
+if has('win32')
+	set guifont=Ricty:h11:cSHIFTJIS
+	if has('printer')
+		set printfont=Ricty:h11:cSHIFTJIS
+	endif
+endif
+
+set columns=300
+set lines=54
+
+set clipboard+=unnamed
+set clipboard+=autoselect
+
+" カーソルの点滅 (blink) を止める
+set guicursor=a:blinkon0
+
+" 起動時に最大化する
+set linespace=0
+let &go = substitute(&go, '[lLrRmT]', '', 'g')
+
+set guioptions+=a
+
+" 問い合わせダイアログを表示
+set confirm
+
+set mouse=a
+set nomousefocus
+set mousehide
+set cmdheight=2
+
+if has('multi_byte_ime')
+  highlight Cursor guifg=NONE guibg=Green
+  highlight CursorIM guifg=NONE guibg=Purple
+endif
+
+" colorscheme torte
+" colorscheme darkblue
+colorscheme dracula
+
+" -------------------------------------------------
+" vim プラグインの設定
+" -------------------------------------------------
+" mark.vimはcolorschemeの設定後に読み込む必要があるため、
+" _gvimrcにプラグインのセットを行う
+" \m カーソル下のキーワードがハイライトされていなければハイライトし、ハイライトされていればハイライトを解除します。
+" \r 入力した正規表現にマッチしたキーワードをハイライト表示します。
+" \n カーソル下のキーワードのハイライトを解除します。
+" source $VIM/vimfiles/plugin/mark.vim
+
